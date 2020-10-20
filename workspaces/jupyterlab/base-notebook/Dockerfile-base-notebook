@@ -23,7 +23,10 @@ USER root
 # features (e.g., download as all possible file formats)
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
+ && apt-get install -yq --no-install-recommends software-properties-common
+ && add-apt-repository -y ppa:deadsnakes/ppa
  && apt-get install -yq --no-install-recommends \
+    python3.8 \
     wget \
     bzip2 \
     ca-certificates \
