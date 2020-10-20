@@ -28,8 +28,8 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && \
 
 USER $NB_UID
 
-RUN conda install xeus-python -c conda-forge && \
-    pip3 --no-cache-dir install \
+RUN conda install --quiet --yes xeus-python -c conda-forge && \
+    conda install --quiet --yes \
     'jupyter-lsp' \
     'beautifulsoup4==4.9.*' \
     'bokeh==2.1.*' \
@@ -48,7 +48,7 @@ RUN conda install xeus-python -c conda-forge && \
     'pandas==1.0.*' \
     'patsy==0.5.*' \
     'protobuf==3.12.*' \
-    'tables==3.6.*' \
+    'pytables==3.6.*' \
     'scikit-image==0.17.*' \
     'scikit-learn==0.23.*' \
     'scipy==1.5.*' \
@@ -71,6 +71,7 @@ RUN conda install xeus-python -c conda-forge && \
     jupyter lab build -y && \
     jupyter lab clean -y && \
     npm cache clean --force && \
+    conda clean --all -f -y && \
     rm -rf "/home/${NB_USER}/.cache/yarn" && \
     rm -rf "/home/${NB_USER}/.node-gyp" && \
     fix-permissions "/home/${NB_USER}"
