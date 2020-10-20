@@ -105,7 +105,7 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-py38_${MINICONDA
 # Correct permissions
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
-RUN pip3 --no-cache-dir install wheel setuptools 'notebook==6.0.3' \
+RUN conda install --quiet --yes wheel setuptools 'notebook==6.0.3' \
     'jupyterhub==1.1.0' \
     'jupyterlab>=2.2,<3.0.0a0' && \
     jupyter notebook --generate-config && \
